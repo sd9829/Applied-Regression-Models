@@ -31,9 +31,3 @@ Each R script demonstrates the application of **simple and multiple linear regre
 - Base R packages only (no external libraries needed)
 
 ---
-
-## ▶️ How to Run
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/<your-username>/<repo-name>.git
