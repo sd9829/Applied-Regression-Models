@@ -1,5 +1,5 @@
-📊 # Linear Regression Homework (R)
-
+📊 **Linear Regression Homework (R)
+**
 This repository contains my homework assignments for the Linear Regression Analysis course, based on examples and exercises from
 Introduction to Linear Regression Analysis (5th Edition) by Montgomery, Peck, and Vining.
 
