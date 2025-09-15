@@ -3,18 +3,15 @@ viscosity <- c(1.1330, 0.9772, 0.8532, 0.7550, 0.6723, 0.6021, 0.5420, 0.5074)
 
 data <- data.frame(temperature, viscosity)
 
-# a. Estimate the prediction equation (fit simple linear regression)
+# a. Estimate the prediction equation
 model <- lm(viscosity ~ temperature, data = data)
-summary(model)  # shows slope, intercept, t-tests, R^2, p-values
+summary(model)
 
 # b. Perform a complete analysis of the model
-#    - Check ANOVA table for overall significance (F-test)
-#    - Check p-value of slope (t-test)
-#    - Examine residual plots for assumptions
-anova(model)  # F-test for regression
+anova(model)  # ANOVA table for overall significance / F-test
 
 par(mfrow = c(2, 2))
-plot(model)   # creates residuals vs fitted, QQ plot, etc.
+plot(model)
 
 # Reset plotting layout
 par(mfrow = c(1, 1))
@@ -31,7 +28,7 @@ plot(data$temperature, data$viscosity,
      xlab="Temperature (°C)", ylab="Viscosity (mPa·s)", pch=19)
 abline(model, col="blue", lwd=2)
 
-# confidence band 
+# confidence band
 lines(new_temp$temperature, conf_band[,2], col="red", lty=2)
 lines(new_temp$temperature, conf_band[,3], col="red", lty=2)
 
