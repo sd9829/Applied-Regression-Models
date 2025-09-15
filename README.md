@@ -16,7 +16,7 @@ Each R script demonstrates the application of **simple and multiple linear regre
 ## 📁 Structure
 
 - Each script corresponds to a specific textbook exercise or dataset.
-- Scripts are named descriptively (e.g., `regression_toluene.R`, `ad_spending.R`).
+- Scripts are named as Chapter_number.question_number.R.
 - Each script includes clear comments explaining each step of the analysis:
   - Data setup
   - Model fitting
