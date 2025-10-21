@@ -22,11 +22,41 @@ model <- lm(Y ~ X1 + X2, data = auto_data)
 # Set layout for all 3 plots in one window
 par(mfrow = c(2, 2), mar = c(4.5, 4.5, 2.5, 1.5))
 
+#-----------------------------
+# (c) Percent variability explained
+#-----------------------------
+cat("\n--- (c) Variability Explained ---\n")
+R2 <- summary(model)$r.squared
+cat("R-squared:", R2, "\n")
+cat("=>", round(R2 * 100, 2), "% of the total variability is explained.\n")
+
+#-----------------------------
+# (d) 95% Confidence Intervals for slopes
+#-----------------------------
+cat("\n--- (d) 95% Confidence Intervals for Slopes ---\n")
+confint(model, level = 0.95)
+
+#-----------------------------
+# (e) 95% Confidence Interval for mean response
+#-----------------------------
+cat("\n--- (e) 95% Confidence Interval for Mean Mileage (X1=275, X2=3000) ---\n")
+new_data <- data.frame(X1 = 275, X2 = 3000)
+predict(model, newdata = new_data, interval = "confidence", level = 0.95)
+
+#-----------------------------
+# (f) 95% Prediction Interval for individual mileage
+#-----------------------------
+cat("\n--- (f) 95% Prediction Interval for Individual Mileage (X1=275, X2=3000) ---\n")
+predict(model, newdata = new_data, interval = "prediction", level = 0.95)
+
+
+windows()
 # (1) Normal probability plot
 qqnorm(resid(model), main = "Normal Q-Q Plot of Residuals")
 qqline(resid(model), col = "red", lwd = 2)
 
 # (2) Residuals vs Fitted
+windows()
 plot(fitted(model), resid(model),
      main = "Residuals vs Fitted Values",
      xlab = "Fitted Values",
@@ -35,6 +65,7 @@ plot(fitted(model), resid(model),
 abline(h = 0, col = "red", lwd = 2)
 
 # (3) Residuals vs Predictors
+windows()
 plot(auto_data$X1, resid(model),
      main = "Residuals vs X1 (Displacement)",
      xlab = "Displacement (in^3)",   # Replaced the problematic "³" with "^3"
@@ -42,6 +73,7 @@ plot(auto_data$X1, resid(model),
      pch = 19, col = "purple")
 abline(h = 0, col = "red", lwd = 2)
 
+windows()
 plot(auto_data$X2, resid(model),
      main = "Residuals vs X2 (Weight)",
      xlab = "Weight (lbs)",
