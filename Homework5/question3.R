@@ -75,14 +75,14 @@ out$flag_covratio <- (covr < covr_low) | (covr > covr_high)
 flag_dfb <- apply(abs(dfb_df) > dfbeta_cut, 1, any)
 out$flag_dfbetas <- flag_dfb
 
-cat("\n=== Cutoffs (rules of thumb) ===\n")
+cat("\nCutoffs (rules of thumb)\n")
 cat(sprintf("High leverage: h_ii > %.3f\n", lev_cut))
 cat(sprintf("Large Cook's D: D > %.3f\n", cooks_cut))
 cat(sprintf("Large DFFITS: |DFFITS| > %.3f\n", dffits_cut))
 cat(sprintf("Large |DFBETA_j| > %.3f (any coefficient)\n", dfbeta_cut))
 cat(sprintf("Unusual COVRATIO: outside [%.3f, %.3f]\n", covr_low, covr_high))
 
-cat("\n=== Top observations by influence ===\n")
+cat("\nTop observations by influence\n")
 print(out[order(-out$cooksD), ], row.names = FALSE)
 
 # ---- Index plots (which obs stand out?) ----
