@@ -78,6 +78,12 @@ ggplot(auto_subset, aes(x = displacement, y = mpg)) +
   geom_smooth(method = "lm", se = FALSE, color = "red") +
   labs(title = "MPG vs Displacement", x = "Engine Displacement", y = "Miles Per Gallon")
 
+ggplot(auto_subset, aes(x = acceleration, y = mpg)) +
+  geom_point(color = "black") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  labs(title = "MPG vs acceleration", x = "Engine acceleration", y = "Miles Per Gallon")
+
+
 # part 2 of code
 
 # Fit linear regression model model
