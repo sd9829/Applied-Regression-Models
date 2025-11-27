@@ -35,18 +35,19 @@ kappa(model, exact = TRUE)
 # ridge regression
 library(MASS)
 
-# Fit ridge over a grid of k values
-ridge_mod <- lm.ridge(y ~ x1 + x2, data = df, lambda = seq(0, 10, 0.1))
+# Fit ridge regression over a grid of k values
+k_values <- seq(0, 10, 0.1)
+ridge_mod <- lm.ridge(y ~ x1 + x2, data = df, lambda = k_values)
 
-# Plot ridge trace
+# Ridge trace plot
 plot(ridge_mod,
-     main = "Ridge Trace for Delivery Data")
+     main = "Ridge Trace for Soft Drink Delivery Time Data",
+     xlab = "Ridge Penalty (k)",
+     ylab = "Standardized Coefficients")
 
-# choosing k
-ridge_mod$lambda[which.min(ridge_mod$GCV)]
-
-# refit model with chosen k
 best_k <- ridge_mod$lambda[which.min(ridge_mod$GCV)]
 best_k
 
-coef(best <- lm.ridge(y ~ x1 + x2, data = df, lambda = best_k))
+best_model <- lm.ridge(y ~ x1 + x2, data = df, lambda = best_k)
+coef(best_model)
+
