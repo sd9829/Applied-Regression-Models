@@ -26,3 +26,26 @@ vif_values
 
 kappa(m_reduced)
 kappa(m_reduced, exact = TRUE)
+
+# since there is linear dependence:
+df_ridge <- subset(df, select = -c(x_7, x_10))
+
+library(MASS)
+
+k_values <- seq(0, 10, 0.1)
+
+ridge_mod <- lm.ridge(y ~ ., data = df_ridge, lambda = k_values)
+
+plot(ridge_mod,
+     main = "Ridge Trace for Young Red Wine Data",
+     xlab = "k (Ridge Penalty)",
+     ylab = "Standardized Coefficients")
+
+best_k <- ridge_mod$lambda[which.min(ridge_mod$GCV)]
+best_k
+
+best_model <- lm.ridge(y ~ ., data = df_ridge, lambda = best_k)
+coef(best_model)
+
+
+
